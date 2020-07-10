@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './components/Person/Person.js';
+import Person from '../components/Persons/Persons.js';
 class App extends Component {
   state = {
     persons: [
