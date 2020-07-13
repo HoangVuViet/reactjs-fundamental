@@ -11,3 +11,4 @@ function reducer(state, action) {
 let store = createStore(reducer, initialState);
 let state = store.getState();
 console.log(state);
+sadasdasdasdasd;
