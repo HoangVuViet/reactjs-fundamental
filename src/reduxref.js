@@ -51,3 +51,56 @@ store.dispatch(
 );
 
 // console.log(store.getState());
+// App state: a plain object with many keys or "slices"
+{
+  todos: [{
+      text: 'Eat food',
+      completed: true
+  }, {
+      text: 'Exercise',
+      completed: false
+  }],
+  visibilityFilter : 'SHOW_COMPLETED'
+}
+// Actions: plain objects with a "type" field
+{ type: 'ADD_TODO', text: 'Go to swimming pool' }
+{ type: 'TOGGLE_TODO', index: 1 }
+{ type: 'SET_VISIBILITY_FILTER', filter: 'SHOW_ALL' }
+
+//This is the store we create with redux's createStore method
+const store = createStore(todoApp, {})
+
+// Provider is given the store as a prop
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app-node')
+)
+import {createStore, applyMiddleware} from "redux";
+
+// Middleware written as ES5 functions
+function middleware1(storeAPI) {
+    return function(next) {
+        return function(action) {
+            // Do anything here: pass the action onwards with next(action),
+            // or restart the pipeline with storeAPI.dispatch(action)
+            // Can also use storeAPI.getState() here
+        }
+    }
+}
+
+// Same thing, but written as ES6 arrow functions:
+const middleware2 = storeAPI => next => action => {
+    // Do work here
+}
+
+const logger = storeAPI => next => action => {
+    console.log('dispatching', action)
+    let result = next(action)
+    console.log('next state', storeAPI.getState())
+    return result
+}
+
+const middlewareEnhancer = applyMiddleware(middleware1, middleware2, logger)
+const store = createStore(rootReducer, preloadedState, middlewareEnhancer);
