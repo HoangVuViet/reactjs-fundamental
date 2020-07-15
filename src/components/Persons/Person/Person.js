@@ -1,7 +1,6 @@
 import React from 'react';
 import './Person.css';
 const person = (props) => {
-  console.log(props.name);
   return (
     <div className="Person">
       <p onClick={props.click}>
