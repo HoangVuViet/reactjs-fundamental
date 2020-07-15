@@ -3,15 +3,29 @@ import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
-  state = {
-    persons: [
-      { id: 'sadasd', name: 'Hoang', age: '29' },
-      { id: 'asdaw', name: 'Vu', age: '25' },
-      { id: 'asawds', name: 'Viet', age: '24' },
-    ],
-    otherState: 'some other value',
-    showPersons: false,
-  };
+  constructor(props) {
+    super(props);
+    console.log('[App.js] contructor');
+    this.state = {
+      persons: [
+        { id: 'sadasd', name: 'Hoang', age: '29' },
+        { id: 'asdaw', name: 'Vu', age: '25' },
+        { id: 'asawds', name: 'Viet', age: '24' },
+      ],
+      otherState: 'some other value',
+      showPersons: false,
+    };
+  }
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+  componentWillMount() {
+    console.log('[App.js] componentWillMount');
+  }
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
   switchNameHandler = (newName) => {
     // console.log('switchName Success!');
     //Do not mutate state directly. Use setState()
@@ -49,6 +63,7 @@ class App extends Component {
     });
   };
   render() {
+    console.log('[App.js] render()');
     let persons = null;
 
     if (this.state.showPersons) {
@@ -66,8 +81,9 @@ class App extends Component {
     return (
       <div className="App">
         <Cockpit
-          title={this.props.title}
           clicked={this.togglePersonsHandler}
+          persons={this.state.persons}
+          title={this.props.title}
         ></Cockpit>
         {persons}
       </div>
