@@ -14,7 +14,10 @@ class Persons extends React.Component {
     return { message: 'Snapshot!' };
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log('[Persons.js] componentDidUpdate');
+    console.log('[Persons.js] componentDidUpdate' + prevProps);
+  }
+  componentWillUnmount(prevProps, prevState) {
+    console.log('[Persons.js] componentWillUnmount');
   }
   render() {
     console.log('[Persons.js] rendering...');

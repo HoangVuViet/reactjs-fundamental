@@ -3,6 +3,18 @@ import './Cockpit.css';
 const Cockpit = (props) => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
+    setTimeout(() => {
+      alert('HTTP Request!');
+    }, 1000);
+    return () => {
+      console.log('[Cockpit.js] Cleanup Work with useEffect()');
+    };
+  }, []);
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd effect');
+    return () => {
+      console.log('[Cockpit.js] cleanup work with 2nd effect');
+    };
   });
   return (
     <div>
