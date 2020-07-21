@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/withClass';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -87,7 +88,7 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <Fragment>
         <button onClick={() => this.setState({ showCockpit: false })}>
           Remove Cockpit
         </button>
@@ -99,13 +100,13 @@ class App extends Component {
           ></Cockpit>
         ) : null}
         {persons}
-      </div>
+      </Fragment>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default App;
+export default WithClass(App, 'App');
 // state = {
 //   persons: [
 //     { name: 'Hoang', age: '29' },
