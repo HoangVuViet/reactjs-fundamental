@@ -20,18 +20,24 @@ const num2 = 3.2;
 const printResult = true;
 const resultPhrase = 'Result is:';
 const result = add(num1, num2, printResult, resultPhrase);
-console.log(result);
+//Enum
+enum Role {
+  'ADMIN',
+  'USER',
+  'DEV',
+}
 //Object types
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: [number, string];
-} = {
+
+const person = {
   name: 'Hoang',
   age: 21,
   hobbies: ['Sports', 'Coding'],
-  role: [2, 'Dev'],
+  role: Role.ADMIN,
 };
-person.role.push('Gamer');
 console.log(person);
+
+// Void
+function logSomething(): void {
+  console.log('Hello World!');
+}
+logSomething();
